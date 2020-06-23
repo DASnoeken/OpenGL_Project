@@ -1,0 +1,10 @@
+.vs
+*.exe
+Release
+Debug
+imgui.ini
+*.vcxproj*
+src/vendor/glm/*
+src/vendor/imgui/*
+src/vendor/stb_image/*
+res/textures/*
