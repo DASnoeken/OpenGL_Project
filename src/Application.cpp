@@ -19,6 +19,7 @@
 #include "imgui/imgui.h"
 #include "imgui/imgui_impl_opengl3.h"
 #include "imgui/imgui_impl_glfw.h"
+#include "tests/TestClearColor.h"
 
 int main(void)
 {
@@ -53,6 +54,7 @@ int main(void)
 
     std::cout << glGetString(GL_VERSION) << std::endl;
     {    
+#if 0
         float positions[] = {
             -100.0f, -100.0f, 0.0f, 0.0f,
              100.0f, -100.0f, 1.0f, 0.0f,
@@ -65,9 +67,10 @@ int main(void)
             2,3,0
         };
 
+#endif
         GLCALL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
         GLCALL(glEnable(GL_BLEND));
-
+#if 0
         VertexArray va;
         VertexBuffer vb(positions, 4 * 4 * sizeof(float));
         
@@ -97,7 +100,7 @@ int main(void)
         shader.unbind();
         vb.Unbind();
         ib.Unbind();
-
+#endif
         Renderer renderer;
 
         IMGUI_CHECKVERSION();
@@ -106,23 +109,30 @@ int main(void)
         ImGui::StyleColorsDark();
         //ImGui::StyleColorsClassic();
 
-        glm::vec3 translationA(0, 0, 0);
-        glm::vec3 translationB(400, 0, 0);
+        //glm::vec3 translationA(0, 0, 0);
+        //glm::vec3 translationB(400, 0, 0);
 
-    // Setup Platform/Renderer bindings
+        /* Setup Platform/Renderer bindings */
         ImGui_ImplGlfw_InitForOpenGL(window, true);
-        //ImGui_ImplOpenGL3_Init(glsl_version);
+
+        test::TestClearColor test;
 
         /* Loop until the user closes the window */
         while (!glfwWindowShouldClose(window))
         {
             /* Render here */
             renderer.clear();
+
+            test.onUpdate(0.0f);
+            test.onRender();
+
             glfwPollEvents();
             ImGui_ImplOpenGL3_NewFrame();
             ImGui_ImplGlfw_NewFrame();
             ImGui::NewFrame();
+            test.onImGuiRender();
             
+#if 0
             {
                 glm::mat4 model = glm::translate(glm::mat4(1.0f), translationA);
                 glm::mat4 mvp = proj * view * model;
@@ -147,7 +157,7 @@ int main(void)
                 ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
                 ImGui::End();
             }
-
+#endif
             ImGui::Render();
             ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
