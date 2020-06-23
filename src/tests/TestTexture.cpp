@@ -66,6 +66,7 @@ namespace test {
 
         Renderer renderer;
         m_texture->bind();
+        /* Render the first object */
         {
             glm::mat4 Model = glm::translate(glm::mat4(1.0f), m_translationA);
             glm::mat4 MVP = m_Proj * m_View * Model;
@@ -74,6 +75,7 @@ namespace test {
             renderer.draw(*m_va, *m_ib, *m_shader);
         }
 
+        /* Render the second object */
         {
             glm::mat4 Model = glm::translate(glm::mat4(1.0f), m_translationB);
             glm::mat4 MVP = m_Proj * m_View * Model;
