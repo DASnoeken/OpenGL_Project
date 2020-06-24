@@ -24,6 +24,7 @@
 #include "tests/TestTexture.h"
 #include "tests/TestBatchRendering.h"
 #include "tests/TestBatchMultiColor.h"
+#include "tests/TestBatchMultiTexture.h"
 
 int main(void)
 {
@@ -83,6 +84,7 @@ int main(void)
         testMenu->registerTest<test::TestTexture>("Texture");
         testMenu->registerTest<test::TestBatchRendering>("Batch Rendering");
         testMenu->registerTest<test::TestBatchMultiColor>("Batch Multi Color");
+        testMenu->registerTest<test::TestBatchMultiTexture>("Batch Multi Texture");
         /* Loop until the user closes the window */
         while (!glfwWindowShouldClose(window))
         {
