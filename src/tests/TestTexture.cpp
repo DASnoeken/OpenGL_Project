@@ -11,6 +11,8 @@
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 
+#include <array>
+
 
 namespace test {
 	TestTexture::TestTexture() 
@@ -35,14 +37,14 @@ namespace test {
         GLCALL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
         GLCALL(glEnable(GL_BLEND));
 
-        m_vb = std::make_unique<VertexBuffer>(positions, 4 * 4 * sizeof(float));
+        m_vb = std::make_unique<VertexBuffer>(positions, std::size(positions) * sizeof(float));
 
         VertexBufferLayout layout;
         layout.Push<float>(2);
         layout.Push<float>(2);
         m_va->addBuffer(*m_vb, layout);
 
-        m_ib = std::make_unique<IndexBuffer>(indices,6);
+        m_ib = std::make_unique<IndexBuffer>(indices,std::size(indices));
 
         m_shader->bind();
 

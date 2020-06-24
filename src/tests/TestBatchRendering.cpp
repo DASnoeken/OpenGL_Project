@@ -10,6 +10,8 @@
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 
+#include <array>
+
 test::TestBatchRendering::TestBatchRendering():
     m_Proj(glm::ortho(0.0f, 960.0f, 0.0f, 540.0f, -1.0f, 1.0f)),
     m_View(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0))),
@@ -40,14 +42,14 @@ test::TestBatchRendering::TestBatchRendering():
     GLCALL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
     GLCALL(glEnable(GL_BLEND));
 
-    m_vb = std::make_unique<VertexBuffer>(positions, 4 * 8 * sizeof(float));
+    m_vb = std::make_unique<VertexBuffer>(positions, std::size(positions) * sizeof(float));
 
     VertexBufferLayout layout;
     layout.Push<float>(2);
     layout.Push<float>(2);
     m_va->addBuffer(*m_vb, layout);
 
-    m_ib = std::make_unique<IndexBuffer>(indices, 12);
+    m_ib = std::make_unique<IndexBuffer>(indices, std::size(indices));
     m_shader->bind();
 
     m_texture = std::make_unique<Texture>("res/textures/unnamed.jpg");
