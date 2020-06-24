@@ -19,8 +19,10 @@
 #include "imgui/imgui.h"
 #include "imgui/imgui_impl_opengl3.h"
 #include "imgui/imgui_impl_glfw.h"
+
 #include "tests/TestClearColor.h"
 #include "tests/TestTexture.h"
+#include "tests/TestBatchRendering.h"
 
 int main(void)
 {
@@ -78,6 +80,7 @@ int main(void)
 
         testMenu->registerTest<test::TestClearColor>("Clear Color");
         testMenu->registerTest<test::TestTexture>("Texture");
+        testMenu->registerTest<test::TestBatchRendering>("Batch Rendering");
         /* Loop until the user closes the window */
         while (!glfwWindowShouldClose(window))
         {

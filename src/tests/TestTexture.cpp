@@ -88,8 +88,8 @@ namespace test {
 
 	void TestTexture::onImGuiRender(){
         ImGui::Begin("Debug Window");
-        ImGui::SliderFloat3("Translation A", &m_translationA.x, 0.0f, 960.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
-        ImGui::SliderFloat3("Translation B", &m_translationB.x, 0.0f, 960.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
+        ImGui::SliderFloat3("Translation A", &m_translationA.x, 0.0f, 960.0f);
+        ImGui::SliderFloat3("Translation B", &m_translationB.x, 0.0f, 960.0f);
         ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
         ImGui::End();
 	}
