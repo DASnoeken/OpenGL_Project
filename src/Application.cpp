@@ -23,6 +23,7 @@
 #include "tests/TestClearColor.h"
 #include "tests/TestTexture.h"
 #include "tests/TestBatchRendering.h"
+#include "tests/TestBatchMultiColor.h"
 
 int main(void)
 {
@@ -32,8 +33,8 @@ int main(void)
     if (!glfwInit())
         return -1;
 
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     /* Create a windowed mode window and its OpenGL context */
@@ -81,6 +82,7 @@ int main(void)
         testMenu->registerTest<test::TestClearColor>("Clear Color");
         testMenu->registerTest<test::TestTexture>("Texture");
         testMenu->registerTest<test::TestBatchRendering>("Batch Rendering");
+        testMenu->registerTest<test::TestBatchMultiColor>("Batch Multi Color");
         /* Loop until the user closes the window */
         while (!glfwWindowShouldClose(window))
         {
